@@ -19,7 +19,9 @@ int main()
     // Display the object (WGPUInstance is a simple pointer, it may be
     // copied around without worrying about its size).
     std::cout << "WGPU instance: " << instance << std::endl;
-    
+
     std::cout << "Hello Bear!" << std::endl;
+
+    wgpuInstanceRelease(instance);    
     return 0;
 }
