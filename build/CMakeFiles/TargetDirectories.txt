@@ -1,0 +1,5 @@
+/Users/jackylei/Documents/WebGPUSimulation/build/CMakeFiles/simulation.dir
+/Users/jackylei/Documents/WebGPUSimulation/build/CMakeFiles/edit_cache.dir
+/Users/jackylei/Documents/WebGPUSimulation/build/CMakeFiles/rebuild_cache.dir
+/Users/jackylei/Documents/WebGPUSimulation/build/webgpu/CMakeFiles/edit_cache.dir
+/Users/jackylei/Documents/WebGPUSimulation/build/webgpu/CMakeFiles/rebuild_cache.dir
