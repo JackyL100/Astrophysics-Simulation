@@ -1,5 +1,6 @@
 #include <iostream>
 #include <webgpu/webgpu.h>
+#include <webgpu/wgpu.h>
 #include <cassert>
 
 /**
@@ -187,6 +188,43 @@ int main()
     wgpuDeviceSetUncapturedErrorCallback(device, onDeviceError, nullptr /* pUserData */);
     std::cout << "Got device: " << device << std::endl;
 
+    WGPUQueue queue = wgpuDeviceGetQueue(device);
+
+    // set up command encoder 
+    WGPUCommandEncoderDescriptor encoderDesc = {};
+    encoderDesc.nextInChain = nullptr;
+    encoderDesc.label = "My command encoder";
+    WGPUCommandEncoder encoder = wgpuDeviceCreateCommandEncoder(device, &encoderDesc);
+
+    // send debug placeholder to test command encoder
+    wgpuCommandEncoderInsertDebugMarker(encoder, "Do one thing");
+    wgpuCommandEncoderInsertDebugMarker(encoder, "Do another thing");
+
+    WGPUCommandBufferDescriptor cmdBufferDescriptor = {};
+    cmdBufferDescriptor.nextInChain = nullptr;
+    cmdBufferDescriptor.label = "Command buffer";
+    WGPUCommandBuffer command = wgpuCommandEncoderFinish(encoder, &cmdBufferDescriptor);
+    wgpuCommandEncoderRelease(encoder); // release encoder after it's finished
+
+    // Finally submit the command queue
+    std::cout << "Submitting command..." << std::endl;
+    wgpuQueueSubmit(queue, 1, &command);
+    wgpuCommandBufferRelease(command);
+    std::cout << "Command submitted." << std::endl;
+
+    // poll device so device isnt destroyed before command is done
+    for (int i = 0 ; i < 10 ; ++i) {
+        std::cout << "Tick/Poll device..." << std::endl;
+    #if defined(WEBGPU_BACKEND_DAWN)
+        wgpuDeviceTick(device);
+    #elif defined(WEBGPU_BACKEND_WGPU)
+        wgpuDevicePoll(device, false, nullptr);
+    #elif defined(WEBGPU_BACKEND_EMSCRIPTEN)
+        emscripten_sleep(100);
+    #endif
+    }
+
+    wgpuQueueRelease(queue);
     wgpuDeviceRelease(device);
     return 0;
 }

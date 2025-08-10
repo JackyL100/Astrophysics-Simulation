@@ -961,7 +961,8 @@ CMakeFiles/simulation.dir/main.cpp.o: /Users/jackylei/Documents/WebGPUSimulation
   /Library/Developer/CommandLineTools/usr/lib/clang/16/include/stdarg.h \
   /Library/Developer/CommandLineTools/usr/lib/clang/16/include/stddef.h \
   /Library/Developer/CommandLineTools/usr/lib/clang/16/include/stdint.h \
-  /Users/jackylei/Documents/WebGPUSimulation/webgpu/include/webgpu/webgpu.h
+  /Users/jackylei/Documents/WebGPUSimulation/webgpu/include/webgpu/webgpu.h \
+  /Users/jackylei/Documents/WebGPUSimulation/webgpu/include/webgpu/wgpu.h
 
 
 /Users/jackylei/Documents/WebGPUSimulation/webgpu/include/webgpu/webgpu.h:
@@ -2085,6 +2086,8 @@ CMakeFiles/simulation.dir/main.cpp.o: /Users/jackylei/Documents/WebGPUSimulation
 /Library/Developer/CommandLineTools/SDKs/MacOSX15.1.sdk/usr/include/c++/v1/__atomic/fence.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX15.1.sdk/usr/include/c++/v1/__memory/ranges_construct_at.h:
+
+/Users/jackylei/Documents/WebGPUSimulation/webgpu/include/webgpu/wgpu.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX15.1.sdk/usr/include/c++/v1/__iterator/move_iterator.h:
 

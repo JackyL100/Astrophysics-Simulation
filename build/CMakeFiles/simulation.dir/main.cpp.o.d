@@ -956,6 +956,7 @@ CMakeFiles/simulation.dir/main.cpp.o: \
   /Library/Developer/CommandLineTools/SDKs/MacOSX15.1.sdk/usr/include/c++/v1/print \
   /Library/Developer/CommandLineTools/SDKs/MacOSX15.1.sdk/usr/include/unistd.h \
   /Users/jackylei/Documents/WebGPUSimulation/webgpu/include/webgpu/webgpu.h \
+  /Users/jackylei/Documents/WebGPUSimulation/webgpu/include/webgpu/wgpu.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX15.1.sdk/usr/include/c++/v1/cassert \
   /Library/Developer/CommandLineTools/SDKs/MacOSX15.1.sdk/usr/include/assert.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX15.1.sdk/usr/include/_assert.h \

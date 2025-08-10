@@ -963,4 +963,5 @@ CMakeFiles/simulation.dir/main.cpp.o
  /Library/Developer/CommandLineTools/usr/lib/clang/16/include/stddef.h
  /Library/Developer/CommandLineTools/usr/lib/clang/16/include/stdint.h
  /Users/jackylei/Documents/WebGPUSimulation/webgpu/include/webgpu/webgpu.h
+ /Users/jackylei/Documents/WebGPUSimulation/webgpu/include/webgpu/wgpu.h
 
