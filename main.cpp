@@ -51,6 +51,48 @@ WGPUAdapter requestAdapterSync(WGPUInstance instance, WGPURequestAdapterOptions 
     return userData.adapter;
 }
 
+/**
+ * Utility function to get a WebGPU device, so that
+ *     WGPUDevice device = requestDeviceSync(adapter, options);
+ * is roughly equivalent to
+ *     const device = await adapter.requestDevice(descriptor);
+ * It is very similar to requestAdapter
+ */
+WGPUDevice requestDeviceSync(WGPUAdapter adapter, WGPUDeviceDescriptor const * descriptor) {
+    struct UserData {
+        WGPUDevice device = nullptr;
+        bool requestEnded = false;
+    };
+    UserData userData;
+
+    auto onDeviceRequestEnded = [](WGPURequestDeviceStatus status, WGPUDevice device, char const * message, void * pUserData) {
+        UserData& userData = *reinterpret_cast<UserData*>(pUserData);
+        if (status == WGPURequestDeviceStatus_Success) {
+            userData.device = device;
+        } else {
+            std::cout << "Could not get WebGPU device: " << message << std::endl;
+        }
+        userData.requestEnded = true;
+    };
+
+    wgpuAdapterRequestDevice(
+        adapter,
+        descriptor,
+        onDeviceRequestEnded,
+        (void*)&userData
+    );
+
+#ifdef __EMSCRIPTEN__
+    while (!userData.requestEnded) {
+        emscripten_sleep(100);
+    }
+#endif // __EMSCRIPTEN__
+
+    assert(userData.requestEnded);
+
+    return userData.device;
+}
+
 void printAdapterLimits(WGPUAdapter adapter) 
 {
     WGPUSupportedLimits supportedLimits = {};
@@ -123,6 +165,28 @@ int main()
 
     std::cout << "Got adapter: " << adapter << std::endl;
 
+    std::cout << "Requesting device..." << std::endl;
+
+    WGPUDeviceDescriptor deviceDesc = {};
+
+    WGPUDevice device = requestDeviceSync(adapter, &deviceDesc);
     wgpuAdapterRelease(adapter); 
+    // A function that is invoked whenever the device stops being available.
+    deviceDesc.deviceLostCallback = [](WGPUDeviceLostReason reason, char const* message, void* /* pUserData */) {
+        std::cout << "Device lost: reason " << reason;
+        if (message) std::cout << " (" << message << ")";
+        std::cout << std::endl;
+    };
+
+    // Uncaptured error callback is invoked when API is misused
+    auto onDeviceError = [](WGPUErrorType type, char const* message, void* /* pUserData */) {
+        std::cout << "Uncaptured device error: type " << type;
+        if (message) std::cout << " (" << message << ")";
+        std::cout << std::endl;
+    };
+    wgpuDeviceSetUncapturedErrorCallback(device, onDeviceError, nullptr /* pUserData */);
+    std::cout << "Got device: " << device << std::endl;
+
+    wgpuDeviceRelease(device);
     return 0;
 }
