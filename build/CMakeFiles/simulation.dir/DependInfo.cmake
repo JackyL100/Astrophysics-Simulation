@@ -8,6 +8,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
+  "/Users/jackylei/Documents/WebGPUSimulation/Application.cpp" "CMakeFiles/simulation.dir/Application.cpp.o" "gcc" "CMakeFiles/simulation.dir/Application.cpp.o.d"
   "/Users/jackylei/Documents/WebGPUSimulation/main.cpp" "CMakeFiles/simulation.dir/main.cpp.o" "gcc" "CMakeFiles/simulation.dir/main.cpp.o.d"
   )
 

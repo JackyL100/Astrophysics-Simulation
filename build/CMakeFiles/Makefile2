@@ -150,12 +150,12 @@ webgpu/clean:
 CMakeFiles/simulation.dir/all: glfw/src/CMakeFiles/glfw.dir/all
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/simulation.dir/build.make CMakeFiles/simulation.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/simulation.dir/build.make CMakeFiles/simulation.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/jackylei/Documents/WebGPUSimulation/build/CMakeFiles --progress-num=23,24 "Built target simulation"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/jackylei/Documents/WebGPUSimulation/build/CMakeFiles --progress-num=23,24,25 "Built target simulation"
 .PHONY : CMakeFiles/simulation.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/simulation.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/jackylei/Documents/WebGPUSimulation/build/CMakeFiles 24
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/jackylei/Documents/WebGPUSimulation/build/CMakeFiles 25
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/simulation.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /Users/jackylei/Documents/WebGPUSimulation/build/CMakeFiles 0
 .PHONY : CMakeFiles/simulation.dir/rule
@@ -167,7 +167,7 @@ simulation: CMakeFiles/simulation.dir/rule
 # codegen rule for target.
 CMakeFiles/simulation.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/simulation.dir/build.make CMakeFiles/simulation.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/jackylei/Documents/WebGPUSimulation/build/CMakeFiles --progress-num=23,24 "Finished codegen for target simulation"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/jackylei/Documents/WebGPUSimulation/build/CMakeFiles --progress-num=23,24,25 "Finished codegen for target simulation"
 .PHONY : CMakeFiles/simulation.dir/codegen
 
 # clean rule for target.
@@ -214,7 +214,7 @@ glfw/src/CMakeFiles/glfw.dir/clean:
 glfw/src/CMakeFiles/update_mappings.dir/all:
 	$(MAKE) $(MAKESILENT) -f glfw/src/CMakeFiles/update_mappings.dir/build.make glfw/src/CMakeFiles/update_mappings.dir/depend
 	$(MAKE) $(MAKESILENT) -f glfw/src/CMakeFiles/update_mappings.dir/build.make glfw/src/CMakeFiles/update_mappings.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/jackylei/Documents/WebGPUSimulation/build/CMakeFiles --progress-num=25 "Built target update_mappings"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/jackylei/Documents/WebGPUSimulation/build/CMakeFiles --progress-num=26 "Built target update_mappings"
 .PHONY : glfw/src/CMakeFiles/update_mappings.dir/all
 
 # Build rule for subdir invocation for target.
@@ -231,7 +231,7 @@ update_mappings: glfw/src/CMakeFiles/update_mappings.dir/rule
 # codegen rule for target.
 glfw/src/CMakeFiles/update_mappings.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f glfw/src/CMakeFiles/update_mappings.dir/build.make glfw/src/CMakeFiles/update_mappings.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/jackylei/Documents/WebGPUSimulation/build/CMakeFiles --progress-num=25 "Finished codegen for target update_mappings"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/jackylei/Documents/WebGPUSimulation/build/CMakeFiles --progress-num=26 "Finished codegen for target update_mappings"
 .PHONY : glfw/src/CMakeFiles/update_mappings.dir/codegen
 
 # clean rule for target.

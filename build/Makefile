@@ -155,6 +155,30 @@ update_mappings/fast:
 	$(MAKE) $(MAKESILENT) -f glfw/src/CMakeFiles/update_mappings.dir/build.make glfw/src/CMakeFiles/update_mappings.dir/build
 .PHONY : update_mappings/fast
 
+Application.o: Application.cpp.o
+.PHONY : Application.o
+
+# target to build an object file
+Application.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/simulation.dir/build.make CMakeFiles/simulation.dir/Application.cpp.o
+.PHONY : Application.cpp.o
+
+Application.i: Application.cpp.i
+.PHONY : Application.i
+
+# target to preprocess a source file
+Application.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/simulation.dir/build.make CMakeFiles/simulation.dir/Application.cpp.i
+.PHONY : Application.cpp.i
+
+Application.s: Application.cpp.s
+.PHONY : Application.s
+
+# target to generate assembly for a file
+Application.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/simulation.dir/build.make CMakeFiles/simulation.dir/Application.cpp.s
+.PHONY : Application.cpp.s
+
 main.o: main.cpp.o
 .PHONY : main.o
 
@@ -190,6 +214,9 @@ help:
 	@echo "... update_mappings"
 	@echo "... glfw"
 	@echo "... simulation"
+	@echo "... Application.o"
+	@echo "... Application.i"
+	@echo "... Application.s"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"

@@ -1,5 +1,6 @@
-CMakeFiles/simulation.dir/main.cpp.o: \
-  /Users/jackylei/Documents/WebGPUSimulation/main.cpp \
+CMakeFiles/simulation.dir/Application.cpp.o: \
+  /Users/jackylei/Documents/WebGPUSimulation/Application.cpp \
+  /Users/jackylei/Documents/WebGPUSimulation/Application.hpp \
   /Library/Developer/CommandLineTools/SDKs/MacOSX15.1.sdk/usr/include/c++/v1/iostream \
   /Library/Developer/CommandLineTools/SDKs/MacOSX15.1.sdk/usr/include/c++/v1/__assert \
   /Library/Developer/CommandLineTools/SDKs/MacOSX15.1.sdk/usr/include/c++/v1/__assertion_handler \
@@ -965,5 +966,4 @@ CMakeFiles/simulation.dir/main.cpp.o: \
   /Library/Developer/CommandLineTools/SDKs/MacOSX15.1.sdk/usr/include/c++/v1/cassert \
   /Library/Developer/CommandLineTools/SDKs/MacOSX15.1.sdk/usr/include/assert.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX15.1.sdk/usr/include/_assert.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX15.1.sdk/usr/include/_static_assert.h \
-  /Users/jackylei/Documents/WebGPUSimulation/Application.hpp
+  /Library/Developer/CommandLineTools/SDKs/MacOSX15.1.sdk/usr/include/_static_assert.h

@@ -86,19 +86,35 @@ CMakeFiles/simulation.dir/main.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/simulation.dir/main.cpp.s"
 	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/jackylei/Documents/WebGPUSimulation/main.cpp -o CMakeFiles/simulation.dir/main.cpp.s
 
+CMakeFiles/simulation.dir/Application.cpp.o: CMakeFiles/simulation.dir/flags.make
+CMakeFiles/simulation.dir/Application.cpp.o: /Users/jackylei/Documents/WebGPUSimulation/Application.cpp
+CMakeFiles/simulation.dir/Application.cpp.o: CMakeFiles/simulation.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/jackylei/Documents/WebGPUSimulation/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/simulation.dir/Application.cpp.o"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/simulation.dir/Application.cpp.o -MF CMakeFiles/simulation.dir/Application.cpp.o.d -o CMakeFiles/simulation.dir/Application.cpp.o -c /Users/jackylei/Documents/WebGPUSimulation/Application.cpp
+
+CMakeFiles/simulation.dir/Application.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/simulation.dir/Application.cpp.i"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/jackylei/Documents/WebGPUSimulation/Application.cpp > CMakeFiles/simulation.dir/Application.cpp.i
+
+CMakeFiles/simulation.dir/Application.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/simulation.dir/Application.cpp.s"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/jackylei/Documents/WebGPUSimulation/Application.cpp -o CMakeFiles/simulation.dir/Application.cpp.s
+
 # Object files for target simulation
 simulation_OBJECTS = \
-"CMakeFiles/simulation.dir/main.cpp.o"
+"CMakeFiles/simulation.dir/main.cpp.o" \
+"CMakeFiles/simulation.dir/Application.cpp.o"
 
 # External object files for target simulation
 simulation_EXTERNAL_OBJECTS =
 
 simulation: CMakeFiles/simulation.dir/main.cpp.o
+simulation: CMakeFiles/simulation.dir/Application.cpp.o
 simulation: CMakeFiles/simulation.dir/build.make
 simulation: /Users/jackylei/Documents/WebGPUSimulation/webgpu/bin/macos-aarch64/libwgpu_native.dylib
 simulation: glfw/src/libglfw3.a
 simulation: CMakeFiles/simulation.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/Users/jackylei/Documents/WebGPUSimulation/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable simulation"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/Users/jackylei/Documents/WebGPUSimulation/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking CXX executable simulation"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/simulation.dir/link.txt --verbose=$(VERBOSE)
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold "Copying '/Users/jackylei/Documents/WebGPUSimulation/webgpu/bin/macos-aarch64/libwgpu_native.dylib' to '/Users/jackylei/Documents/WebGPUSimulation/build'..."
 	/opt/homebrew/bin/cmake -E copy_if_different /Users/jackylei/Documents/WebGPUSimulation/webgpu/bin/macos-aarch64/libwgpu_native.dylib /Users/jackylei/Documents/WebGPUSimulation/build
