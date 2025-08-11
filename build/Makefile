@@ -130,6 +130,19 @@ simulation/fast:
 .PHONY : simulation/fast
 
 #=============================================================================
+# Target rules for targets named glfw3webgpu
+
+# Build rule for target.
+glfw3webgpu: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 glfw3webgpu
+.PHONY : glfw3webgpu
+
+# fast build rule for target.
+glfw3webgpu/fast:
+	$(MAKE) $(MAKESILENT) -f glfw3webgpu/CMakeFiles/glfw3webgpu.dir/build.make glfw3webgpu/CMakeFiles/glfw3webgpu.dir/build
+.PHONY : glfw3webgpu/fast
+
+#=============================================================================
 # Target rules for targets named glfw
 
 # Build rule for target.
@@ -213,6 +226,7 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... update_mappings"
 	@echo "... glfw"
+	@echo "... glfw3webgpu"
 	@echo "... simulation"
 	@echo "... Application.o"
 	@echo "... Application.i"

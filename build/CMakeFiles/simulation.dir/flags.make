@@ -4,7 +4,7 @@
 # compile CXX with /Library/Developer/CommandLineTools/usr/bin/c++
 CXX_DEFINES = -DWEBGPU_BACKEND_WGPU
 
-CXX_INCLUDES = -I/Users/jackylei/Documents/WebGPUSimulation/glfw/include -isystem /Users/jackylei/Documents/WebGPUSimulation/webgpu/include
+CXX_INCLUDES = -I/Users/jackylei/Documents/WebGPUSimulation/glfw/include -I/Users/jackylei/Documents/WebGPUSimulation/glfw3webgpu/. -isystem /Users/jackylei/Documents/WebGPUSimulation/webgpu/include
 
 CXX_FLAGSarm64 = -std=c++17 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX15.1.sdk
 

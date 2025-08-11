@@ -3,6 +3,9 @@
 /Users/jackylei/Documents/WebGPUSimulation/build/CMakeFiles/rebuild_cache.dir
 /Users/jackylei/Documents/WebGPUSimulation/build/webgpu/CMakeFiles/edit_cache.dir
 /Users/jackylei/Documents/WebGPUSimulation/build/webgpu/CMakeFiles/rebuild_cache.dir
+/Users/jackylei/Documents/WebGPUSimulation/build/glfw3webgpu/CMakeFiles/glfw3webgpu.dir
+/Users/jackylei/Documents/WebGPUSimulation/build/glfw3webgpu/CMakeFiles/edit_cache.dir
+/Users/jackylei/Documents/WebGPUSimulation/build/glfw3webgpu/CMakeFiles/rebuild_cache.dir
 /Users/jackylei/Documents/WebGPUSimulation/build/glfw/CMakeFiles/edit_cache.dir
 /Users/jackylei/Documents/WebGPUSimulation/build/glfw/CMakeFiles/rebuild_cache.dir
 /Users/jackylei/Documents/WebGPUSimulation/build/glfw/src/CMakeFiles/glfw.dir

@@ -15,6 +15,7 @@ set(CMAKE_MAKEFILE_DEPENDS
   "/Users/jackylei/Documents/WebGPUSimulation/glfw/CMake/glfw3Config.cmake.in"
   "/Users/jackylei/Documents/WebGPUSimulation/glfw/CMakeLists.txt"
   "/Users/jackylei/Documents/WebGPUSimulation/glfw/src/CMakeLists.txt"
+  "/Users/jackylei/Documents/WebGPUSimulation/glfw3webgpu/CMakeLists.txt"
   "/Users/jackylei/Documents/WebGPUSimulation/webgpu/CMakeLists.txt"
   "/opt/homebrew/share/cmake/Modules/BasicConfigVersion-SameMajorVersion.cmake.in"
   "/opt/homebrew/share/cmake/Modules/CMakeCInformation.cmake"
@@ -70,6 +71,7 @@ set(CMAKE_MAKEFILE_OUTPUTS
 set(CMAKE_MAKEFILE_PRODUCTS
   "CMakeFiles/CMakeDirectoryInformation.cmake"
   "webgpu/CMakeFiles/CMakeDirectoryInformation.cmake"
+  "glfw3webgpu/CMakeFiles/CMakeDirectoryInformation.cmake"
   "glfw/src/glfw3Config.cmake"
   "glfw/src/glfw3ConfigVersion.cmake"
   "glfw/CMakeFiles/CMakeDirectoryInformation.cmake"
@@ -80,6 +82,7 @@ set(CMAKE_MAKEFILE_PRODUCTS
 # Dependency information for all targets:
 set(CMAKE_DEPEND_INFO_FILES
   "CMakeFiles/simulation.dir/DependInfo.cmake"
+  "glfw3webgpu/CMakeFiles/glfw3webgpu.dir/DependInfo.cmake"
   "glfw/src/CMakeFiles/glfw.dir/DependInfo.cmake"
   "glfw/src/CMakeFiles/update_mappings.dir/DependInfo.cmake"
   )

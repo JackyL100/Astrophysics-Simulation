@@ -9,6 +9,7 @@ CXX_STANDARD_REQUIRED ON
 CXX_EXTENSIONS OFF)
 
 add_subdirectory(webgpu)
+add_subdirectory(glfw3webgpu)
 
 if (NOT EMSCRIPTEN)
     # Add the 'glfw' directory, which contains the definition of a 'glfw' target
@@ -21,6 +22,6 @@ endif()
 # In both cases, we can now link to the 'glfw' target
 
 
-target_link_libraries(simulation PRIVATE webgpu glfw)
+target_link_libraries(simulation PRIVATE webgpu glfw glfw3webgpu)
 
 target_copy_webgpu_binaries(simulation)

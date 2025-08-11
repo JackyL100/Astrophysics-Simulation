@@ -966,4 +966,5 @@ CMakeFiles/simulation.dir/main.cpp.o: \
   /Library/Developer/CommandLineTools/SDKs/MacOSX15.1.sdk/usr/include/assert.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX15.1.sdk/usr/include/_assert.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX15.1.sdk/usr/include/_static_assert.h \
-  /Users/jackylei/Documents/WebGPUSimulation/Application.hpp
+  /Users/jackylei/Documents/WebGPUSimulation/Application.hpp \
+  /Users/jackylei/Documents/WebGPUSimulation/glfw3webgpu/./glfw3webgpu.h

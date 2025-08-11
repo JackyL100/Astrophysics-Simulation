@@ -111,6 +111,8 @@ simulation_EXTERNAL_OBJECTS =
 simulation: CMakeFiles/simulation.dir/main.cpp.o
 simulation: CMakeFiles/simulation.dir/Application.cpp.o
 simulation: CMakeFiles/simulation.dir/build.make
+simulation: glfw/src/libglfw3.a
+simulation: glfw3webgpu/libglfw3webgpu.a
 simulation: /Users/jackylei/Documents/WebGPUSimulation/webgpu/bin/macos-aarch64/libwgpu_native.dylib
 simulation: glfw/src/libglfw3.a
 simulation: CMakeFiles/simulation.dir/link.txt

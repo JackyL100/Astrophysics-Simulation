@@ -2,6 +2,7 @@
 #include <webgpu/webgpu.h>
 #include <webgpu/wgpu.h>
 #include <GLFW/glfw3.h>
+#include <glfw3webgpu.h>
 #include <cassert>
 
 #pragma once
@@ -25,4 +26,5 @@ private:
     WGPUDevice device;
     WGPUQueue queue;
     GLFWwindow* window;
+    WGPUSurface surface;
 };

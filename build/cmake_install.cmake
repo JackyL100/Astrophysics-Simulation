@@ -44,6 +44,11 @@ endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
+  include("/Users/jackylei/Documents/WebGPUSimulation/build/glfw3webgpu/cmake_install.cmake")
+endif()
+
+if(NOT CMAKE_INSTALL_LOCAL_ONLY)
+  # Include the install script for the subdirectory.
   include("/Users/jackylei/Documents/WebGPUSimulation/build/glfw/cmake_install.cmake")
 endif()
 

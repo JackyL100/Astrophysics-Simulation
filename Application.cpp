@@ -147,14 +147,11 @@ bool Application::Initialize()
         return false;
     }
 
-    // Display the object (WGPUInstance is a simple pointer, it may be
-    // copied around without worrying about its size).
-    std::cout << "WGPU instance: " << instance << std::endl;
-
-    std::cout << "Requesting adapter..." << std::endl;
+    surface = glfwGetWGPUSurface(instance, window);
 
     WGPURequestAdapterOptions adapterOpts = {};
     adapterOpts.nextInChain = nullptr;
+    adapterOpts.compatibleSurface = surface;    
     WGPUAdapter adapter = requestAdapterSync(instance, &adapterOpts);
 
     // don't need instance once we have adapter
@@ -204,6 +201,7 @@ void Application::Terminate()
     glfwTerminate();
     wgpuQueueRelease(this->queue);
     wgpuDeviceRelease(this->device);
+    wgpuSurfaceRelease(this->surface);
 }
 
 void Application::MainLoop()

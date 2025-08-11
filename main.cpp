@@ -5,8 +5,6 @@
 #include <cassert>
 #include "Application.hpp"
 
-
-
 int main() 
 {
 
