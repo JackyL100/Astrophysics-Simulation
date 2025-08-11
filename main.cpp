@@ -1,6 +1,7 @@
 #include <iostream>
 #include <webgpu/webgpu.h>
 #include <webgpu/wgpu.h>
+#include <GLFW/glfw3.h>
 #include <cassert>
 
 /**
@@ -213,7 +214,7 @@ int main()
     std::cout << "Command submitted." << std::endl;
 
     // poll device so device isnt destroyed before command is done
-    for (int i = 0 ; i < 10 ; ++i) {
+    for (int i = 0 ; i < 5 ; ++i) {
         std::cout << "Tick/Poll device..." << std::endl;
     #if defined(WEBGPU_BACKEND_DAWN)
         wgpuDeviceTick(device);
@@ -224,6 +225,28 @@ int main()
     #endif
     }
 
+    if (!glfwInit()) {
+        std::cerr << "Could not initialize GLFW!" << std::endl;
+        return 1;
+    }
+
+    // Create the window
+    glfwWindowHint(GLFW_CLIENT_API, GLFW_NO_API); // <-- extra info for glfwCreateWindow
+    glfwWindowHint(GLFW_RESIZABLE, GLFW_FALSE);
+    GLFWwindow* window = glfwCreateWindow(640, 480, "Learn WebGPU", nullptr, nullptr);
+    if (!window) {
+        std::cerr << "Could not open window!" << std::endl;
+        glfwTerminate();
+        return 1;
+    }
+        while (!glfwWindowShouldClose(window)) {
+        // Check whether the user clicked on the close button (and any other
+        // mouse/key event, which we don't use so far)
+        glfwPollEvents();
+    }
+    // At the end of the program, destroy the window
+    glfwDestroyWindow(window);
+    glfwTerminate();
     wgpuQueueRelease(queue);
     wgpuDeviceRelease(device);
     return 0;

@@ -11,23 +11,38 @@ set(CMAKE_MAKEFILE_DEPENDS
   "CMakeFiles/3.31.3/CMakeCCompiler.cmake"
   "CMakeFiles/3.31.3/CMakeCXXCompiler.cmake"
   "CMakeFiles/3.31.3/CMakeSystem.cmake"
+  "/Users/jackylei/Documents/WebGPUSimulation/glfw/CMake/glfw3.pc.in"
+  "/Users/jackylei/Documents/WebGPUSimulation/glfw/CMake/glfw3Config.cmake.in"
+  "/Users/jackylei/Documents/WebGPUSimulation/glfw/CMakeLists.txt"
+  "/Users/jackylei/Documents/WebGPUSimulation/glfw/src/CMakeLists.txt"
   "/Users/jackylei/Documents/WebGPUSimulation/webgpu/CMakeLists.txt"
+  "/opt/homebrew/share/cmake/Modules/BasicConfigVersion-SameMajorVersion.cmake.in"
   "/opt/homebrew/share/cmake/Modules/CMakeCInformation.cmake"
   "/opt/homebrew/share/cmake/Modules/CMakeCXXInformation.cmake"
   "/opt/homebrew/share/cmake/Modules/CMakeCommonLanguageInclude.cmake"
+  "/opt/homebrew/share/cmake/Modules/CMakeDependentOption.cmake"
   "/opt/homebrew/share/cmake/Modules/CMakeGenericSystem.cmake"
   "/opt/homebrew/share/cmake/Modules/CMakeInitializeConfigs.cmake"
   "/opt/homebrew/share/cmake/Modules/CMakeLanguageInformation.cmake"
+  "/opt/homebrew/share/cmake/Modules/CMakePackageConfigHelpers.cmake"
   "/opt/homebrew/share/cmake/Modules/CMakeSystemSpecificInformation.cmake"
   "/opt/homebrew/share/cmake/Modules/CMakeSystemSpecificInitialize.cmake"
+  "/opt/homebrew/share/cmake/Modules/CheckCSourceCompiles.cmake"
+  "/opt/homebrew/share/cmake/Modules/CheckIncludeFile.cmake"
+  "/opt/homebrew/share/cmake/Modules/CheckLibraryExists.cmake"
   "/opt/homebrew/share/cmake/Modules/Compiler/AppleClang-C.cmake"
   "/opt/homebrew/share/cmake/Modules/Compiler/AppleClang-CXX.cmake"
   "/opt/homebrew/share/cmake/Modules/Compiler/CMakeCommonCompilerMacros.cmake"
   "/opt/homebrew/share/cmake/Modules/Compiler/Clang.cmake"
   "/opt/homebrew/share/cmake/Modules/Compiler/GNU.cmake"
+  "/opt/homebrew/share/cmake/Modules/FindPackageHandleStandardArgs.cmake"
+  "/opt/homebrew/share/cmake/Modules/FindPackageMessage.cmake"
+  "/opt/homebrew/share/cmake/Modules/FindThreads.cmake"
+  "/opt/homebrew/share/cmake/Modules/GNUInstallDirs.cmake"
   "/opt/homebrew/share/cmake/Modules/Internal/CMakeCLinkerInformation.cmake"
   "/opt/homebrew/share/cmake/Modules/Internal/CMakeCXXLinkerInformation.cmake"
   "/opt/homebrew/share/cmake/Modules/Internal/CMakeCommonLinkerInformation.cmake"
+  "/opt/homebrew/share/cmake/Modules/Internal/CheckSourceCompiles.cmake"
   "/opt/homebrew/share/cmake/Modules/Linker/AppleClang-C.cmake"
   "/opt/homebrew/share/cmake/Modules/Linker/AppleClang-CXX.cmake"
   "/opt/homebrew/share/cmake/Modules/Linker/AppleClang.cmake"
@@ -42,6 +57,7 @@ set(CMAKE_MAKEFILE_DEPENDS
   "/opt/homebrew/share/cmake/Modules/Platform/Linker/Apple-AppleClang-CXX.cmake"
   "/opt/homebrew/share/cmake/Modules/Platform/Linker/Apple-AppleClang.cmake"
   "/opt/homebrew/share/cmake/Modules/Platform/UnixPaths.cmake"
+  "/opt/homebrew/share/cmake/Modules/WriteBasicConfigVersionFile.cmake"
   )
 
 # The corresponding makefile is:
@@ -54,9 +70,16 @@ set(CMAKE_MAKEFILE_OUTPUTS
 set(CMAKE_MAKEFILE_PRODUCTS
   "CMakeFiles/CMakeDirectoryInformation.cmake"
   "webgpu/CMakeFiles/CMakeDirectoryInformation.cmake"
+  "glfw/src/glfw3Config.cmake"
+  "glfw/src/glfw3ConfigVersion.cmake"
+  "glfw/CMakeFiles/CMakeDirectoryInformation.cmake"
+  "glfw/src/glfw3.pc"
+  "glfw/src/CMakeFiles/CMakeDirectoryInformation.cmake"
   )
 
 # Dependency information for all targets:
 set(CMAKE_DEPEND_INFO_FILES
   "CMakeFiles/simulation.dir/DependInfo.cmake"
+  "glfw/src/CMakeFiles/glfw.dir/DependInfo.cmake"
+  "glfw/src/CMakeFiles/update_mappings.dir/DependInfo.cmake"
   )

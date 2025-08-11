@@ -10,7 +10,17 @@ CXX_EXTENSIONS OFF)
 
 add_subdirectory(webgpu)
 
+if (NOT EMSCRIPTEN)
+    # Add the 'glfw' directory, which contains the definition of a 'glfw' target
+    add_subdirectory(glfw)
+else()
+    # Create a mock 'glfw' target that just sets the `-sUSE_GLFW=3` link option:
+    add_library(glfw INTERFACE)
+    target_link_options(glfw INTERFACE -sUSE_GLFW=3)
+endif()
+# In both cases, we can now link to the 'glfw' target
 
-target_link_libraries(simulation PRIVATE webgpu)
+
+target_link_libraries(simulation PRIVATE webgpu glfw)
 
 target_copy_webgpu_binaries(simulation)
