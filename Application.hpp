@@ -4,7 +4,6 @@
 #include <GLFW/glfw3.h>
 #include <glfw3webgpu.h>
 #include <cassert>
-
 #pragma once
 
 class Application {
@@ -27,4 +26,7 @@ private:
     WGPUQueue queue;
     GLFWwindow* window;
     WGPUSurface surface;
+
+    std::pair<WGPUSurfaceTexture, WGPUTextureView> GetNextSurfaceViewData();
+    // WGPUTextureView GetNextSurfaceTextureView();
 };

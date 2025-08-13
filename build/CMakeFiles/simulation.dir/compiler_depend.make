@@ -967,6 +967,7 @@ CMakeFiles/simulation.dir/Application.cpp.o: /Users/jackylei/Documents/WebGPUSim
   /Library/Developer/CommandLineTools/usr/lib/clang/16/include/stdint.h \
   /Users/jackylei/Documents/WebGPUSimulation/Application.hpp \
   /Users/jackylei/Documents/WebGPUSimulation/glfw/include/GLFW/glfw3.h \
+  /Users/jackylei/Documents/WebGPUSimulation/glfw3webgpu/glfw3webgpu.h \
   /Users/jackylei/Documents/WebGPUSimulation/webgpu/include/webgpu/webgpu.h \
   /Users/jackylei/Documents/WebGPUSimulation/webgpu/include/webgpu/wgpu.h
 
@@ -1936,6 +1937,7 @@ CMakeFiles/simulation.dir/main.cpp.o: /Users/jackylei/Documents/WebGPUSimulation
   /Library/Developer/CommandLineTools/usr/lib/clang/16/include/stdint.h \
   /Users/jackylei/Documents/WebGPUSimulation/Application.hpp \
   /Users/jackylei/Documents/WebGPUSimulation/glfw/include/GLFW/glfw3.h \
+  /Users/jackylei/Documents/WebGPUSimulation/glfw3webgpu/glfw3webgpu.h \
   /Users/jackylei/Documents/WebGPUSimulation/webgpu/include/webgpu/webgpu.h \
   /Users/jackylei/Documents/WebGPUSimulation/webgpu/include/webgpu/wgpu.h
 
@@ -2953,6 +2955,8 @@ CMakeFiles/simulation.dir/main.cpp.o: /Users/jackylei/Documents/WebGPUSimulation
 /Library/Developer/CommandLineTools/SDKs/MacOSX15.1.sdk/usr/include/c++/v1/__format/format_context.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX15.1.sdk/usr/include/c++/v1/compare:
+
+/Users/jackylei/Documents/WebGPUSimulation/glfw3webgpu/glfw3webgpu.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX15.1.sdk/usr/include/_types/_uint32_t.h:
 

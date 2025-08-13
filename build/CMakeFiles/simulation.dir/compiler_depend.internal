@@ -968,6 +968,7 @@ CMakeFiles/simulation.dir/Application.cpp.o
  /Library/Developer/CommandLineTools/usr/lib/clang/16/include/stdint.h
  /Users/jackylei/Documents/WebGPUSimulation/Application.hpp
  /Users/jackylei/Documents/WebGPUSimulation/glfw/include/GLFW/glfw3.h
+ /Users/jackylei/Documents/WebGPUSimulation/glfw3webgpu/glfw3webgpu.h
  /Users/jackylei/Documents/WebGPUSimulation/webgpu/include/webgpu/webgpu.h
  /Users/jackylei/Documents/WebGPUSimulation/webgpu/include/webgpu/wgpu.h
 
@@ -1938,6 +1939,7 @@ CMakeFiles/simulation.dir/main.cpp.o
  /Library/Developer/CommandLineTools/usr/lib/clang/16/include/stdint.h
  /Users/jackylei/Documents/WebGPUSimulation/Application.hpp
  /Users/jackylei/Documents/WebGPUSimulation/glfw/include/GLFW/glfw3.h
+ /Users/jackylei/Documents/WebGPUSimulation/glfw3webgpu/glfw3webgpu.h
  /Users/jackylei/Documents/WebGPUSimulation/webgpu/include/webgpu/webgpu.h
  /Users/jackylei/Documents/WebGPUSimulation/webgpu/include/webgpu/wgpu.h
 

@@ -134,6 +134,22 @@ void printAdapterProperties(WGPUAdapter adapter)
 
 bool Application::Initialize()
 {
+    // must initialize glfw and window before wgpu stuff!
+    if (!glfwInit()) {
+        std::cerr << "Could not initialize GLFW!" << std::endl;
+        return false;
+    }
+
+    glfwWindowHint(GLFW_CLIENT_API, GLFW_NO_API); // <-- extra info for glfwCreateWindow
+    glfwWindowHint(GLFW_RESIZABLE, GLFW_FALSE);
+    // Create Window
+    this->window = glfwCreateWindow(640, 480, "Learn WebGPU", nullptr, nullptr);
+    if (!this->window) {
+        std::cerr << "Could not open window!" << std::endl;
+        glfwTerminate();
+        return false;
+    }
+
     // We create a descriptor
     WGPUInstanceDescriptor desc = {};
     desc.nextInChain = nullptr;
@@ -160,7 +176,7 @@ bool Application::Initialize()
     WGPUDeviceDescriptor deviceDesc = {};
 
     this->device = requestDeviceSync(adapter, &deviceDesc);
-    wgpuAdapterRelease(adapter); 
+    
     // A function that is invoked whenever the device stops being available.
     deviceDesc.deviceLostCallback = [](WGPUDeviceLostReason reason, char const* message, void* /* pUserData */) {
         std::cout << "Device lost: reason " << reason;
@@ -178,25 +194,58 @@ bool Application::Initialize()
 
     this->queue = wgpuDeviceGetQueue(this->device);
 
-    if (!glfwInit()) {
-        std::cerr << "Could not initialize GLFW!" << std::endl;
-        return false;
+    WGPUSurfaceConfiguration config = {};
+    config.nextInChain = nullptr;
+    config.width = 640;
+    config.height = 480;
+    WGPUTextureFormat surfaceFormat = wgpuSurfaceGetPreferredFormat(surface, adapter);
+    
+    config.format = surfaceFormat;
+    config.viewFormatCount = 0;
+    config.viewFormats = nullptr;
+    config.usage = WGPUTextureUsage_RenderAttachment;
+    config.device = this->device;
+    config.presentMode = WGPUPresentMode_Fifo;
+    config.alphaMode = WGPUCompositeAlphaMode_Opaque;
+
+    wgpuSurfaceConfigure(this->surface, &config);
+    wgpuAdapterRelease(adapter); 
+    return true;
+}
+
+std::pair<WGPUSurfaceTexture, WGPUTextureView> Application::GetNextSurfaceViewData() {
+    // get next surface texture
+    WGPUSurfaceTexture surfaceTexture;
+    wgpuSurfaceGetCurrentTexture(surface, &surfaceTexture);
+
+    if (surfaceTexture.status != WGPUSurfaceGetCurrentTextureStatus_Success) {
+        return { surfaceTexture, nullptr };
     }
 
-    glfwWindowHint(GLFW_CLIENT_API, GLFW_NO_API); // <-- extra info for glfwCreateWindow
-    glfwWindowHint(GLFW_RESIZABLE, GLFW_FALSE);
-    // Create Window
-    this->window = glfwCreateWindow(640, 480, "Learn WebGPU", nullptr, nullptr);
-    if (!this->window) {
-        std::cerr << "Could not open window!" << std::endl;
-        glfwTerminate();
-        return false;
-    }
-    return true;
+    // get target view from texture view
+    WGPUTextureViewDescriptor viewDescriptor;
+    viewDescriptor.nextInChain = nullptr;
+    viewDescriptor.label = "Surface texture view";
+    viewDescriptor.format = wgpuTextureGetFormat(surfaceTexture.texture);
+    viewDescriptor.dimension = WGPUTextureViewDimension_2D;
+    viewDescriptor.baseMipLevel = 0;
+    viewDescriptor.mipLevelCount = 1;
+    viewDescriptor.baseArrayLayer = 0;
+    viewDescriptor.arrayLayerCount = 1;
+    viewDescriptor.aspect = WGPUTextureAspect_All;
+    WGPUTextureView targetView = wgpuTextureCreateView(surfaceTexture.texture, &viewDescriptor);
+    #ifndef WEBGPU_BACKEND_WGPU
+        // We no longer need the texture, only its view
+        // (NB: with wgpu-native, surface textures must be release after the call to wgpuSurfacePresent)
+        wgpuTextureRelease(surfaceTexture.texture);
+    #endif // WEBGPU_BACKEND_WGPU
+
+    return { surfaceTexture, targetView };
 }
 
 void Application::Terminate()
 {
+    wgpuSurfaceUnconfigure(this->surface);
     glfwDestroyWindow(this->window);
     glfwTerminate();
     wgpuQueueRelease(this->queue);
@@ -206,7 +255,54 @@ void Application::Terminate()
 
 void Application::MainLoop()
 {
-    glfwPollEvents();
+    glfwPollEvents();   
+
+    // Get the next target texture view
+    auto [ surfaceTexture, targetView ] = GetNextSurfaceViewData();
+    if (!targetView) return;
+
+    // Create a command encoder for the draw call
+	WGPUCommandEncoderDescriptor encoderDesc = {};
+	encoderDesc.nextInChain = nullptr;
+	encoderDesc.label = "My command encoder";
+	WGPUCommandEncoder encoder = wgpuDeviceCreateCommandEncoder(device, &encoderDesc);
+
+	// Create the render pass that clears the screen with our color
+	WGPURenderPassDescriptor renderPassDesc = {};
+	renderPassDesc.nextInChain = nullptr;
+
+    // The attachment part of the render pass descriptor describes the target texture of the pass
+	WGPURenderPassColorAttachment renderPassColorAttachment = {};
+	renderPassColorAttachment.view = targetView;
+	renderPassColorAttachment.resolveTarget = nullptr;
+	renderPassColorAttachment.loadOp = WGPULoadOp_Clear;
+	renderPassColorAttachment.storeOp = WGPUStoreOp_Store;
+	renderPassColorAttachment.clearValue = WGPUColor{ 1.0, 0.1, 0.2, 1.0 };
+
+    renderPassDesc.colorAttachmentCount = 1;
+	renderPassDesc.colorAttachments = &renderPassColorAttachment;
+	renderPassDesc.depthStencilAttachment = nullptr;
+	renderPassDesc.timestampWrites = nullptr;
+
+    // Create the render pass and end it immediately (we only clear the screen but do not draw anything)
+	WGPURenderPassEncoder renderPass = wgpuCommandEncoderBeginRenderPass(encoder, &renderPassDesc);
+	wgpuRenderPassEncoderEnd(renderPass);
+	wgpuRenderPassEncoderRelease(renderPass);
+    
+    // Finally encode and submit the render pass
+	WGPUCommandBufferDescriptor cmdBufferDescriptor = {};
+	cmdBufferDescriptor.nextInChain = nullptr;
+	cmdBufferDescriptor.label = "Command buffer";
+	WGPUCommandBuffer command = wgpuCommandEncoderFinish(encoder, &cmdBufferDescriptor);
+	wgpuCommandEncoderRelease(encoder);
+
+	wgpuQueueSubmit(queue, 1, &command);
+	wgpuCommandBufferRelease(command);
+
+    wgpuSurfacePresent(this->surface);
+    wgpuTextureViewRelease(targetView);
+    
+    wgpuDevicePoll(this->device, false, nullptr);
 }
 
 bool Application::IsRunning()
