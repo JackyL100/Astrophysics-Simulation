@@ -198,7 +198,7 @@ bool Application::Initialize()
     config.nextInChain = nullptr;
     config.width = 640;
     config.height = 480;
-    WGPUTextureFormat surfaceFormat = wgpuSurfaceGetPreferredFormat(surface, adapter);
+    this->surfaceFormat = wgpuSurfaceGetPreferredFormat(surface, adapter);
     
     config.format = surfaceFormat;
     config.viewFormatCount = 0;
@@ -210,6 +210,8 @@ bool Application::Initialize()
 
     wgpuSurfaceConfigure(this->surface, &config);
     wgpuAdapterRelease(adapter); 
+
+    InitializePipeline();
     return true;
 }
 
@@ -245,6 +247,7 @@ std::pair<WGPUSurfaceTexture, WGPUTextureView> Application::GetNextSurfaceViewDa
 
 void Application::Terminate()
 {
+    wgpuRenderPipelineRelease(pipeline);
     wgpuSurfaceUnconfigure(this->surface);
     glfwDestroyWindow(this->window);
     glfwTerminate();
@@ -286,8 +289,16 @@ void Application::MainLoop()
 
     // Create the render pass and end it immediately (we only clear the screen but do not draw anything)
 	WGPURenderPassEncoder renderPass = wgpuCommandEncoderBeginRenderPass(encoder, &renderPassDesc);
+
+    // Select which render pipeline to use
+    wgpuRenderPassEncoderSetPipeline(renderPass, pipeline);
+    // Draw 1 instance of a 3-vertices shape
+    wgpuRenderPassEncoderDraw(renderPass, 3, 1, 0, 0);
+
 	wgpuRenderPassEncoderEnd(renderPass);
 	wgpuRenderPassEncoderRelease(renderPass);
+
+
     
     // Finally encode and submit the render pass
 	WGPUCommandBufferDescriptor cmdBufferDescriptor = {};
@@ -308,4 +319,97 @@ void Application::MainLoop()
 bool Application::IsRunning()
 {
     return !glfwWindowShouldClose(this->window);
+}
+
+void Application::InitializePipeline()
+{
+    WGPUShaderModuleDescriptor shaderDesc{};
+
+    #ifdef WEBGPU_BACKEND_WGPU
+    shaderDesc.hintCount = 0;
+    shaderDesc.hints = nullptr;
+    #endif
+
+    WGPUShaderModuleWGSLDescriptor shaderCodeDesc{};
+    // Set the chained struct's header
+    shaderCodeDesc.chain.next = nullptr;
+    shaderCodeDesc.chain.sType = WGPUSType_ShaderModuleWGSLDescriptor;
+    // Connect the chain
+    shaderDesc.nextInChain = &shaderCodeDesc.chain;
+    shaderCodeDesc.code = shaderSource;
+
+    WGPUShaderModule shaderModule = wgpuDeviceCreateShaderModule(device, &shaderDesc);
+
+    WGPURenderPipelineDescriptor pipelineDesc{};
+    pipelineDesc.nextInChain = nullptr;
+    pipelineDesc.vertex.bufferCount = 0;
+    pipelineDesc.vertex.buffers = nullptr;
+    pipelineDesc.vertex.module = shaderModule;
+    pipelineDesc.vertex.entryPoint = "vs_main";
+    pipelineDesc.vertex.constantCount = 0;
+    pipelineDesc.vertex.constants = nullptr;
+
+        // Each sequence of 3 vertices is considered as a triangle
+    pipelineDesc.primitive.topology = WGPUPrimitiveTopology_TriangleList;
+
+    // We'll see later how to specify the order in which vertices should be
+    // connected. When not specified, vertices are considered sequentially.
+    pipelineDesc.primitive.stripIndexFormat = WGPUIndexFormat_Undefined;
+
+    // The face orientation is defined by assuming that when looking
+    // from the front of the face, its corner vertices are enumerated
+    // in the counter-clockwise (CCW) order.
+    pipelineDesc.primitive.frontFace = WGPUFrontFace_CCW;
+
+    // But the face orientation does not matter much because we do not
+    // cull (i.e. "hide") the faces pointing away from us (which is often
+    // used for optimization).
+    pipelineDesc.primitive.cullMode = WGPUCullMode_None;
+
+    // We tell that the programmable fragment shader stage is described
+    // by the function called 'fs_main' in the shader module.
+    WGPUFragmentState fragmentState{};
+    fragmentState.module = shaderModule;
+    fragmentState.entryPoint = "fs_main";
+    fragmentState.constantCount = 0;
+    fragmentState.constants = nullptr;
+    // [...] We'll configure the blending stage here
+    pipelineDesc.fragment = &fragmentState;
+
+    // We do not use stencil/depth testing for now
+    pipelineDesc.depthStencil = nullptr;
+
+    WGPUBlendState blendState{};
+
+    WGPUColorTargetState colorTarget{};
+    colorTarget.format = this->surfaceFormat;
+    colorTarget.blend = &blendState;
+    colorTarget.writeMask = WGPUColorWriteMask_All; // We could write to only some of the color channels.
+
+    // We have only one target because our render pass has only one output color
+    // attachment.
+    fragmentState.targetCount = 1;
+    fragmentState.targets = &colorTarget;
+
+    blendState.color.srcFactor = WGPUBlendFactor_SrcAlpha;
+    blendState.color.dstFactor = WGPUBlendFactor_OneMinusSrcAlpha;
+    blendState.color.operation = WGPUBlendOperation_Add;
+
+    blendState.alpha.srcFactor = WGPUBlendFactor_Zero;
+    blendState.alpha.dstFactor = WGPUBlendFactor_One;
+    blendState.alpha.operation = WGPUBlendOperation_Add;
+
+
+    // Samples per pixel
+    pipelineDesc.multisample.count = 1;
+    // Default value for the mask, meaning "all bits on"
+    pipelineDesc.multisample.mask = ~0u;
+    // Default value as well (irrelevant for count = 1 anyways)
+    pipelineDesc.multisample.alphaToCoverageEnabled = false;
+
+    pipelineDesc.layout = nullptr;
+
+    this->pipeline = wgpuDeviceCreateRenderPipeline(this->device, &pipelineDesc);
+
+    wgpuShaderModuleRelease(shaderModule);
 }
